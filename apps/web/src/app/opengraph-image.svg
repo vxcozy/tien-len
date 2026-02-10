@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="felt" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#dcc07a" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3a2212" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold-text" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd700"/>
+      <stop offset="50%" stop-color="#ffec80"/>
+      <stop offset="100%" stop-color="#daa520"/>
+    </linearGradient>
+    <linearGradient id="red-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7a0000"/>
+      <stop offset="60%" stop-color="#b30000"/>
+      <stop offset="100%" stop-color="#daa520"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark wood background -->
+  <rect width="1200" height="630" fill="#3a2212"/>
+  <!-- Felt glow center -->
+  <rect width="1200" height="630" fill="url(#felt)"/>
+
+  <!-- Decorative border -->
+  <rect x="20" y="20" width="1160" height="590" rx="24" fill="none" stroke="#8b6914" stroke-width="2" opacity="0.4"/>
+
+  <!-- Two overlapping cards on the left side -->
+  <!-- 2 of Spades (back card) -->
+  <g transform="translate(120, 140) rotate(-12, 80, 110)">
+    <rect x="0" y="0" width="140" height="200" rx="12" fill="#f5f5f0" stroke="#d1d5db" stroke-width="2"/>
+    <text x="14" y="40" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#1a1a2e">2</text>
+    <text x="70" y="130" font-family="Georgia, serif" font-size="64" fill="#1a1a2e" text-anchor="middle">&#9824;</text>
+    <text x="126" y="190" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#1a1a2e" text-anchor="end" transform="rotate(180, 126, 174)">2</text>
+  </g>
+
+  <!-- 2 of Hearts (front card) -->
+  <g transform="translate(210, 160) rotate(8, 80, 110)">
+    <rect x="0" y="0" width="140" height="200" rx="12" fill="#f5f5f0" stroke="#d1d5db" stroke-width="2"/>
+    <text x="14" y="40" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#dc2626">2</text>
+    <text x="70" y="130" font-family="Georgia, serif" font-size="64" fill="#dc2626" text-anchor="middle">&#9829;</text>
+    <text x="126" y="190" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#dc2626" text-anchor="end" transform="rotate(180, 126, 174)">2</text>
+  </g>
+
+  <!-- Title text -->
+  <text x="540" y="260" font-family="Georgia, serif" font-size="96" font-weight="bold" fill="url(#gold-text)">Tien Len</text>
+
+  <!-- Subtitle -->
+  <text x="540" y="320" font-family="Georgia, serif" font-size="28" fill="#c4a880" letter-spacing="4">VIETNAMESE CARD GAME</text>
+
+  <!-- Tagline -->
+  <text x="540" y="400" font-family="Georgia, serif" font-size="24" fill="#a89880">Play solo vs AI or multiplayer with friends</text>
+
+  <!-- Red-gold accent bar -->
+  <rect x="540" y="340" width="280" height="3" rx="1.5" fill="url(#red-gold)" opacity="0.6"/>
+
+  <!-- Small decorative suits at bottom -->
+  <text x="520" y="540" font-family="Georgia, serif" font-size="24" fill="#dc2626" opacity="0.4">&#9829;</text>
+  <text x="560" y="540" font-family="Georgia, serif" font-size="24" fill="#1a1a2e" opacity="0.4">&#9824;</text>
+  <text x="600" y="540" font-family="Georgia, serif" font-size="24" fill="#dc2626" opacity="0.4">&#9830;</text>
+  <text x="640" y="540" font-family="Georgia, serif" font-size="24" fill="#1a1a2e" opacity="0.4">&#9827;</text>
+
+  <!-- Players count -->
+  <text x="540" y="460" font-family="Georgia, serif" font-size="20" fill="#8b6914">2-8 Players</text>
+  <text x="540" y="488" font-family="Georgia, serif" font-size="16" fill="#6b5a3a">Twos are highest. Bombs beat twos. First to empty wins.</text>
+</svg>

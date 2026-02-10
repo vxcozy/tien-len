@@ -13,9 +13,34 @@ const maShanZheng = Ma_Shan_Zheng({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tien-len-ruby.vercel.app';
+
 export const metadata: Metadata = {
-  title: "Tien Len",
-  description: "Vietnamese card game - play with friends online",
+  title: {
+    default: 'Tien Len — Vietnamese Card Game',
+    template: '%s | Tien Len',
+  },
+  description: 'Play Tien Len (Tiến Lên), the most popular Vietnamese card game. Solo vs AI or multiplayer with 2-8 friends. Twos are highest. Bombs beat twos. First to empty wins.',
+  keywords: ['tien len', 'tiến lên', 'vietnamese card game', 'card game', 'multiplayer', 'online game'],
+  authors: [{ name: 'vxcozy' }],
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: siteUrl,
+    siteName: 'Tien Len',
+    title: 'Tien Len — Vietnamese Card Game',
+    description: 'Play the most popular Vietnamese card game. Solo vs AI or multiplayer with 2-8 friends online.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tien Len — Vietnamese Card Game',
+    description: 'Play the most popular Vietnamese card game. Solo vs AI or multiplayer with 2-8 friends online.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

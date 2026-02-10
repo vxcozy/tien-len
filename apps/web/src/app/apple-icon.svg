@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <!-- Dark background -->
+  <rect width="180" height="180" rx="40" fill="#3a2212"/>
+  <!-- Subtle gold felt glow -->
+  <ellipse cx="90" cy="90" rx="70" ry="60" fill="#c8a45c" opacity="0.15"/>
+  <!-- 2 of Spades (back card) -->
+  <g transform="translate(36, 32) rotate(-10, 40, 54)">
+    <rect x="0" y="0" width="62" height="88" rx="8" fill="#f5f5f0" stroke="#d1d5db" stroke-width="2"/>
+    <text x="8" y="24" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#1a1a2e">2</text>
+    <text x="31" y="62" font-family="Georgia, serif" font-size="36" fill="#1a1a2e" text-anchor="middle">&#9824;</text>
+  </g>
+  <!-- 2 of Hearts (front card) -->
+  <g transform="translate(72, 42) rotate(10, 40, 54)">
+    <rect x="0" y="0" width="62" height="88" rx="8" fill="#f5f5f0" stroke="#d1d5db" stroke-width="2"/>
+    <text x="8" y="24" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#dc2626">2</text>
+    <text x="31" y="62" font-family="Georgia, serif" font-size="36" fill="#dc2626" text-anchor="middle">&#9829;</text>
+  </g>
+</svg>
