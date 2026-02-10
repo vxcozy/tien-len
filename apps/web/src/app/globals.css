@@ -1,0 +1,558 @@
+@import "tailwindcss";
+
+:root {
+  /* BRIGHT warm palette — festive mobile game feel */
+  --background: #3a2212;
+  --foreground: #fff8e7;
+
+  /* Felt — bright golden center */
+  --felt: #c8a45c;
+  --felt-light: #dcc07a;
+  --felt-dark: #a88638;
+  --felt-highlight: rgba(255, 230, 150, 0.25);
+
+  /* Wood rail — rich chocolate */
+  --wood: #6b3520;
+  --wood-light: #8b4a2a;
+  --wood-dark: #4a2010;
+
+  /* Gold — punchy yellow-gold */
+  --gold: #ffc107;
+  --gold-glow: rgba(255, 193, 7, 0.5);
+
+  /* Cards */
+  --card-white: #faf8f3;
+  --card-red: #e11d48;
+  --card-black: #1a1a2e;
+  --card-back: #7b2d3b;
+
+  /* Surface panels */
+  --surface: #2c1a0e;
+  --surface-hover: #3d2818;
+  --border: #6b4f38;
+  --text-muted: #c4a880;
+
+  /* Accent palette — VIVID rainbow */
+  --accent-blue: #3b82f6;
+  --accent-red: #ef4444;
+  --accent-purple: #a855f7;
+  --accent-pink: #ec4899;
+  --accent-teal: #14b8a6;
+  --accent-green: #22c55e;
+  --accent-orange: #f97316;
+  --accent-indigo: #6366f1;
+
+  /* Avatar ring rainbow colors */
+  --avatar-1: #ef4444;
+  --avatar-2: #f97316;
+  --avatar-3: #eab308;
+  --avatar-4: #22c55e;
+  --avatar-5: #3b82f6;
+  --avatar-6: #a855f7;
+  --avatar-7: #ec4899;
+  --avatar-8: #14b8a6;
+
+  /* Banner/badge specific */
+  --banner-red: #c0392b;
+  --banner-red-light: #e74c3c;
+  --badge-red: #dc2626;
+  --crown-gold: #ffd700;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-felt: var(--felt);
+  --color-felt-light: var(--felt-light);
+  --color-felt-dark: var(--felt-dark);
+  --color-wood: var(--wood);
+  --color-wood-light: var(--wood-light);
+  --color-wood-dark: var(--wood-dark);
+  --color-gold: var(--gold);
+  --color-card-white: var(--card-white);
+  --color-card-red: var(--card-red);
+  --color-card-black: var(--card-black);
+  --color-card-back: var(--card-back);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-text-muted: var(--text-muted);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-red: var(--accent-red);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-teal: var(--accent-teal);
+  --color-accent-green: var(--accent-green);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-indigo: var(--accent-indigo);
+  --color-banner-red: var(--banner-red);
+  --color-banner-red-light: var(--banner-red-light);
+  --color-badge-red: var(--badge-red);
+  --color-crown-gold: var(--crown-gold);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-brush: var(--font-brush);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow: hidden;
+}
+
+/* Card flip support */
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Felt texture overlay — bright golden center glow */
+.felt-texture {
+  background-image:
+    radial-gradient(ellipse at 50% 45%, var(--felt-highlight) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 40%, var(--felt-light) 0%, var(--felt) 35%, var(--felt-dark) 100%);
+}
+
+/* Pulsing gold glow for active turns */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 12px var(--gold-glow); }
+  50% { box-shadow: 0 0 28px var(--gold-glow), 0 0 56px rgba(255, 193, 7, 0.25); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* Bomb shake */
+@keyframes bomb-shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-6px) rotate(-1deg); }
+  20% { transform: translateX(6px) rotate(1deg); }
+  30% { transform: translateX(-4px) rotate(-0.5deg); }
+  40% { transform: translateX(4px) rotate(0.5deg); }
+  50% { transform: translateX(-2px); }
+  60% { transform: translateX(2px); }
+}
+
+.animate-bomb-shake {
+  animation: bomb-shake 0.5s ease-in-out;
+}
+
+/* Confetti fall */
+@keyframes confetti-fall {
+  0% { transform: translateY(-20vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.animate-confetti {
+  animation: confetti-fall 3s ease-in forwards;
+}
+
+/* Celebrate bounce */
+@keyframes celebrate {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.15) rotate(-3deg); }
+  50% { transform: scale(1.05); }
+  75% { transform: scale(1.1) rotate(3deg); }
+}
+
+.animate-celebrate {
+  animation: celebrate 0.6s ease-in-out;
+}
+
+/* Gentle bounce for turn indicator */
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 1.2s ease-in-out infinite;
+}
+
+/* Bomb glow (red) */
+@keyframes bomb-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(220, 38, 38, 0.6); }
+  50% { box-shadow: 0 0 35px rgba(220, 38, 38, 0.9), 0 0 60px rgba(220, 38, 38, 0.3); }
+}
+
+.animate-bomb-glow {
+  animation: bomb-glow 0.8s ease-in-out 2;
+}
+
+/* Diamond pattern for card backs */
+.card-back-pattern {
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,0.08) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,0.08) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.08) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.08) 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
+}
+
+/* Felt diamond pattern overlay */
+.felt-diamond {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(255, 255, 255, 0.02) 20px,
+      rgba(255, 255, 255, 0.02) 21px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(255, 255, 255, 0.02) 20px,
+      rgba(255, 255, 255, 0.02) 21px
+    );
+}
+
+/* Red ribbon clip path for name banners */
+.ribbon-banner {
+  clip-path: polygon(8% 0%, 92% 0%, 100% 50%, 92% 100%, 8% 100%, 0% 50%);
+}
+
+/* Bouncing dots for WAITING animation */
+@keyframes bounce-dots {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
+
+.waiting-dot-1 { animation: bounce-dots 1.4s ease-in-out infinite; }
+.waiting-dot-2 { animation: bounce-dots 1.4s ease-in-out 0.2s infinite; }
+.waiting-dot-3 { animation: bounce-dots 1.4s ease-in-out 0.4s infinite; }
+
+/* Dark maroon curved arc at table bottom */
+.table-bottom-arc {
+  background: linear-gradient(to top, #5c1a1a 0%, #7b2d2d 40%, transparent 100%);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+/* Sparkle animation for decorative elements */
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* ============================================
+   GAME BUTTONS — Rich 3D mobile-game style
+   ============================================ */
+
+/* Primary CTA — bold red with 3D depth */
+.btn-primary {
+  position: relative;
+  background: linear-gradient(180deg, #e74c3c 0%, #c0392b 50%, #a93226 100%);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 4px solid #7b241c;
+  border-radius: 16px;
+  color: white;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 6px 20px rgba(192, 57, 43, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+  transition: all 0.15s ease;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(180deg, #ec5e50 0%, #cb4335 50%, #b03a2e 100%);
+  box-shadow:
+    0 8px 30px rgba(192, 57, 43, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  border-bottom-width: 2px;
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 8px rgba(192, 57, 43, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:disabled {
+  background: linear-gradient(180deg, #666 0%, #555 50%, #444 100%);
+  border-color: rgba(255, 255, 255, 0.05);
+  border-bottom-color: #333;
+  box-shadow: none;
+  color: #999;
+  text-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+/* Secondary CTA — gold/amber with 3D depth */
+.btn-secondary {
+  position: relative;
+  background: linear-gradient(180deg, #f0c040 0%, #d4a017 50%, #b8860b 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 4px solid #8b6914;
+  border-radius: 16px;
+  color: #3d1f00;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 6px 20px rgba(212, 160, 23, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease;
+  overflow: hidden;
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(180deg, #f5cc55 0%, #ddb020 50%, #c49512 100%);
+  box-shadow:
+    0 8px 30px rgba(212, 160, 23, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  border-bottom-width: 2px;
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 8px rgba(212, 160, 23, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary:disabled {
+  background: linear-gradient(180deg, #666 0%, #555 50%, #444 100%);
+  border-color: rgba(255, 255, 255, 0.05);
+  border-bottom-color: #333;
+  box-shadow: none;
+  color: #999;
+  text-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+/* Ghost button — subtle outline with warm tones */
+.btn-ghost {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 193, 7, 0.3);
+  border-radius: 16px;
+  color: #f0c040;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.15s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 193, 7, 0.08);
+  border-color: rgba(255, 193, 7, 0.5);
+  box-shadow: 0 4px 16px rgba(255, 193, 7, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-ghost:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #888;
+}
+
+/* Small utility button — amber glass (Sort, Copy, etc.) */
+.btn-utility {
+  position: relative;
+  background: linear-gradient(180deg, rgba(139, 69, 19, 0.5) 0%, rgba(100, 50, 15, 0.6) 100%);
+  border: 1px solid rgba(212, 160, 23, 0.25);
+  border-bottom: 3px solid rgba(80, 40, 10, 0.5);
+  border-radius: 12px;
+  color: #e8c870;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.15s ease;
+}
+
+.btn-utility:hover {
+  background: linear-gradient(180deg, rgba(160, 80, 20, 0.6) 0%, rgba(120, 60, 18, 0.7) 100%);
+  border-color: rgba(212, 160, 23, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-utility:active {
+  border-bottom-width: 1px;
+  transform: translateY(1px);
+}
+
+/* ============================================
+   HOME PAGE BUTTONS — Asian-style solid gold border
+   ============================================ */
+
+/* Solo button — deep Chinese red → gold, dark gold border (紅包 red envelope style) */
+.btn-home-solo {
+  position: relative;
+  background: linear-gradient(135deg, #7a0000 0%, #b30000 40%, #b8860b 85%, #daa520 100%);
+  border: 3px solid #8b6914;
+  border-radius: 14px;
+  color: #ffd700;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 0 10px rgba(100, 0, 0, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(139, 105, 20, 0.6),
+    0 6px 24px rgba(100, 0, 0, 0.6),
+    0 0 12px rgba(139, 105, 20, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.btn-home-solo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 40%);
+  border-radius: 11px;
+  pointer-events: none;
+}
+
+.btn-home-solo:hover {
+  border-color: #b8860b;
+  background: linear-gradient(135deg, #8b0000 0%, #cc0000 40%, #c9980e 85%, #e6b800 100%);
+  box-shadow:
+    0 0 0 1px rgba(184, 134, 11, 0.8),
+    0 8px 32px rgba(100, 0, 0, 0.7),
+    0 0 24px rgba(184, 134, 11, 0.2),
+    0 0 48px rgba(184, 134, 11, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-home-solo:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 0 0 1px rgba(139, 105, 20, 0.7),
+    0 2px 10px rgba(100, 0, 0, 0.5),
+    0 0 8px rgba(139, 105, 20, 0.15),
+    inset 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Multiplayer button — gold → deep Chinese red, dark gold border */
+.btn-home-multi {
+  position: relative;
+  background: linear-gradient(135deg, #daa520 0%, #b8860b 20%, #b30000 65%, #7a0000 100%);
+  border: 3px solid #8b6914;
+  border-radius: 14px;
+  color: #ffd700;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 8px rgba(100, 0, 0, 0.3);
+  box-shadow:
+    0 0 0 1px rgba(139, 105, 20, 0.6),
+    0 6px 24px rgba(100, 0, 0, 0.5),
+    0 0 12px rgba(139, 105, 20, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.btn-home-multi::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 40%);
+  border-radius: 11px;
+  pointer-events: none;
+}
+
+.btn-home-multi:hover {
+  border-color: #b8860b;
+  background: linear-gradient(135deg, #e6b800 0%, #c9980e 20%, #cc0000 65%, #8b0000 100%);
+  box-shadow:
+    0 0 0 1px rgba(184, 134, 11, 0.8),
+    0 8px 32px rgba(100, 0, 0, 0.6),
+    0 0 24px rgba(184, 134, 11, 0.2),
+    0 0 48px rgba(184, 134, 11, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-home-multi:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 0 0 1px rgba(139, 105, 20, 0.7),
+    0 2px 10px rgba(100, 0, 0, 0.4),
+    0 0 8px rgba(139, 105, 20, 0.15),
+    inset 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Card selection glow pulse */
+@keyframes card-glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(255, 193, 7, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(255, 193, 7, 0.7), 0 0 4px rgba(255, 193, 7, 0.3); }
+}
+
+.animate-card-glow {
+  animation: card-glow 1.5s ease-in-out infinite;
+}
+
+/* Smooth fade-in for page transitions */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out;
+}
