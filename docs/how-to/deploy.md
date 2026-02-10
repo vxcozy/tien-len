@@ -11,45 +11,48 @@ This guide covers deploying the Tien Len card game application to production env
 
 ## Deploy the Frontend to Vercel
 
-### 1. Build the frontend locally
+This is a Turborepo monorepo, so Vercel needs specific configuration to build only the `apps/web` package.
 
-From the project root:
+### 1. Create the Vercel project
+
+Link the monorepo root to Vercel:
 
 ```bash
-npx pnpm --filter web build
+cd /path/to/tien-len
+vercel link --yes --project tien-len
 ```
 
-This builds the Next.js application in `apps/web/.next`.
+### 2. Configure project settings
 
-### 2. Set environment variables
+The project must have these settings (set via Vercel dashboard or API):
 
-The frontend requires these environment variables:
+- **Root Directory**: `apps/web`
+- **Framework**: Next.js
+- **Install Command**: `cd ../.. && pnpm install --frozen-lockfile`
+- **Build Command**: `cd ../.. && pnpm turbo build --filter=web`
+
+These settings tell Vercel to install from the monorepo root (where `pnpm-workspace.yaml` lives) and build with Turborepo filtering.
+
+### 3. Set environment variables
+
+The frontend needs these environment variables (set in Vercel dashboard > Project Settings > Environment Variables):
 
 - `NEXT_PUBLIC_SOCKET_URL` - URL of your deployed server (e.g., `https://your-server.railway.app`)
 - `JWT_SECRET` - Secret for JWT token signing (minimum 32 characters)
 
-### 3. Deploy with Vercel CLI
+### 4. Deploy
 
-From the project root:
-
-```bash
-vercel
-```
-
-Follow the prompts to link your project. On subsequent deploys:
+From the monorepo root:
 
 ```bash
-vercel --prod
+vercel --prod --yes
 ```
 
-### 4. Configure environment variables in Vercel
+The production URL will be `https://tien-len-<team>.vercel.app` or your custom domain.
 
-In the Vercel dashboard:
+### 5. Verify the frontend
 
-1. Go to Project Settings > Environment Variables
-2. Add `NEXT_PUBLIC_SOCKET_URL` (your server URL)
-3. Add `JWT_SECRET` (same value as server)
-4. Redeploy to apply changes
+Visit the production URL. The solo game works without a server. Multiplayer requires the Socket.io server (see below).
 
 ## Deploy the Server with Docker
 
