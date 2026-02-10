@@ -101,7 +101,12 @@ export const useMultiplayerStore = create<MultiplayerStore>((set, get) => ({
       });
 
       socket.on('connect_error', (err) => {
-        set({ error: `Connection error: ${err.message}` });
+        const msg = err.message?.toLowerCase() ?? '';
+        if (msg.includes('websocket') || msg.includes('xhr') || msg.includes('transport')) {
+          set({ error: 'Unable to reach the game server. Check your connection or try disabling ad blockers.' });
+        } else {
+          set({ error: `Connection error: ${err.message}` });
+        }
       });
 
       // Room events

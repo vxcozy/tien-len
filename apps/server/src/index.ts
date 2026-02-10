@@ -25,7 +25,8 @@ const io = new Server(server, {
     origin: config.CORS_ORIGIN.split(',').map(s => s.trim()),
     methods: ['GET', 'POST'],
   },
-  transports: ['websocket'], // WebSocket only - no polling
+  transports: ['polling', 'websocket'],
+  allowUpgrades: true,
   pingTimeout: 20_000,
   pingInterval: 10_000,
 });
